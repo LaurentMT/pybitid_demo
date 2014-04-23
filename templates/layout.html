@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BitID Open Protocol - Demonstration site</title>	
+		<link rel=stylesheet type=text/css media="all" href="{{ url_for('static', filename='demo.css') }}">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>		
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<ul class="nav nav-pills pull-right">
+					<li class="active"><a href="/login">Demonstration</a></li>
+					<li><a href="https://github.com/LaurentMT/pybitid">GitHub</a></li>
+					<li><a href="https://github.com/bitid/bitid/blob/master/BIP_draft.md">BIP draft</a></li>
+					{% if session.uid %}
+						<li><a href="/user">{{ params_tpl['user_address'] }}</a></li>
+					{% endif %}					
+				</ul>
+				<h3><a class="text-muted" style="text-decoration: none;" href="/">PyBitID</a></h3>
+			</div>
+			{% block body %}{% endblock %}
+		</div>	
+	</body>
+</html>

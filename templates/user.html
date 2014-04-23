@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<!-- START USER.HTML -->
+<div class="jumbotron">
+	<h1>Success !</h1>
+	<p class="lead">Your Bitcoin address is {{ params_tpl['user_address'] }}</p>
+	<p>Sign in count : {{ params_tpl['user_signin_count'] }}</p>
+	<p><a class="btn btn-lg btn-success" href="/sign_out" role="button">Log out</a></p>
+</div>
+<!-- END USER.HTML -->
+{% endblock %}
