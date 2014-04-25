@@ -34,8 +34,6 @@ Renames the "pybitid-master" directory in "pybitid"
 
 ## Todo
 
-- Test authentication with curl
-
 - Test authentication with an android smartphone
   You can get an android wallet supporting BitId at: https://github.com/bitid/bitcoin-wallet
   Before testing be sure that your server can be reached with an address different from localhost.
