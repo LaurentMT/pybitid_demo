@@ -81,11 +81,12 @@ def callback():
     '''
     # Retrieves the callback uri
     callback_uri = get_callback_uri()
-    # Extracts data from the posted request
-    bitid_uri = request.form["uri"]
-    signature = request.form["signature"]
-    address   = request.form["address"]
-    
+    # Extracts data from the posted request (from form of from json data according to the method used by the client)
+    container = request.get_json(False, True, False) if request.mimetype == "application/json" else request.form
+    bitid_uri = container["uri"]
+    signature = container["signature"]
+    address   = container["address"]
+        
     #
     # Let's start by a bunch of validations
     #
@@ -212,4 +213,7 @@ def get_callback_uri():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Comment/uncomment following lines to switch production / debug mode
+    # Note that using BitId with a smartphone is not possible in debug mode (server only accessible by local machine)
+    app.run(host='0.0.0.0')
+    #app.run(debug=True)
