@@ -4,11 +4,13 @@ except ImportError:
     from urllib.parse import urlparse, urlunparse
 
 import uuid
+from datetime import datetime
+from functools import update_wrapper
 from werkzeug.utils import redirect
 from flask import Flask
 from flask.json import jsonify
 from flask.templating import render_template
-from flask.helpers import url_for
+from flask.helpers import url_for, make_response
 from flask.globals import session, request
 
 from pybitid import bitid
@@ -33,6 +35,18 @@ app.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<!\xd5\xa2\xa0\x9fR"\xa1
 nonce_db_service = FakeNonceDbService()
 user_db_service = FakeUserDbService()
 tx_db_service = FakeTxDbService()
+
+
+# NoCache decorator 
+# Required to fix a problem with IE which caches all XMLHttpRequest responses 
+def nocache(f):
+    def add_nocache(*args, **kwargs):
+        resp = make_response(f(*args, **kwargs))
+        resp.headers.add('Last-Modified', datetime.now())
+        resp.headers.add('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
+        resp.headers.add('Pragma', 'no-cache')
+        return resp
+    return update_wrapper(add_nocache, f)
 
 
 @app.route("/", methods=["GET"])
@@ -143,6 +157,7 @@ def callback():
             
 
 @app.route("/auth", methods=["GET"])
+@nocache
 def auth():
     '''
     This function checks if a challenge associated to a given address has been validated
@@ -171,6 +186,7 @@ def auth():
 
 
 @app.route("/user", methods=["GET"])
+@nocache
 def user():
     # Checks if user is logged
     if session["uid"] is None:
@@ -187,6 +203,7 @@ def user():
 
 
 @app.route("/sign_out", methods=["GET"])
+@nocache
 def sign_out():
     session.pop("uid", None)
     return redirect(url_for("home"))
