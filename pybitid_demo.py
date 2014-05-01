@@ -51,6 +51,7 @@ def nocache(f):
 
 @app.route("/", methods=["GET"])
 @app.route("/home", methods=["GET"])
+@nocache
 def home():
     params_tpl = {}
     # Checks if user is logged
@@ -63,6 +64,7 @@ def home():
 
 
 @app.route("/login", methods=["GET"])
+@nocache
 def login():
     '''
     This function initializes the authentication process 
@@ -88,6 +90,7 @@ def login():
 
 
 @app.route("/callback", methods=["POST"])
+@nocache
 def callback():
     '''
     This function validates the response sent by the client about the challenge
