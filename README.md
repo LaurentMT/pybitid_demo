@@ -19,11 +19,6 @@ Flask (http://flask.pocoo.org/) - A microframework for web development
 pip install flask
 ```
 
-Pycoin (https://github.com/richardkiss/pycoin) - A python library for bitcoin
-```
-pip install pycoin
-```
-
 PyBitId (https://github.com/LaurentMT/pybitid) - A python library for the BitId protocol
 ```
 Gets the library from Github : https://github.com/LaurentMT/pybitid/archive/master.zip
