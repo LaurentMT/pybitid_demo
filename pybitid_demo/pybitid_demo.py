@@ -21,8 +21,9 @@ from services.fake_tx_db_service import FakeTxDbService
 from services.fake_nonce_db_service import FakeNonceDbService
 
 
+
 # Constant indicating if we run the app against Bitcoin test network or main network
-USE_TESTNET = False
+USE_TESTNET = True
 
 # Initializes the flask app
 app = Flask(__name__)
