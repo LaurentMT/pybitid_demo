@@ -1,7 +1,9 @@
 # PyBitID
 
-This is a python implementation of the BitID demo application originally developed in Ruby. 
+This is a python implementation of the BitID demo application originally developed in Ruby
+
 Video demonstration (ruby): https://www.youtube.com/watch?v=3eepEWTnRTc
+
 Live demo: http://vps90685.ovh.net:8080/
 
 The goal of this toy project is to illustrate how the BitId protocol works and how to implement it with helper functions provided by the PyBitId library.
